@@ -1,0 +1,10 @@
+0:0:0:0:0:0:0:1 - - [11/Nov/2025:22:27:20 +0700] "GET /QLST_WebApp/reports/suppliers HTTP/1.1" 302 - http-bio-8080-exec-1 122
+0:0:0:0:0:0:0:1 - - [11/Nov/2025:22:27:21 +0700] "GET /QLST_WebApp/login HTTP/1.1" 200 1466 http-bio-8080-exec-3 1259
+0:0:0:0:0:0:0:1 - - [11/Nov/2025:22:27:23 +0700] "POST /QLST_WebApp/login HTTP/1.1" 302 - http-bio-8080-exec-4 476
+0:0:0:0:0:0:0:1 - - [11/Nov/2025:22:27:23 +0700] "GET /QLST_WebApp/main HTTP/1.1" 200 3492 http-bio-8080-exec-5 222
+0:0:0:0:0:0:0:1 - - [11/Nov/2025:22:27:25 +0700] "GET /QLST_WebApp/reports/menu HTTP/1.1" 200 4326 http-bio-8080-exec-6 65
+0:0:0:0:0:0:0:1 - - [11/Nov/2025:22:27:25 +0700] "GET /QLST_WebApp/reports/menu HTTP/1.1" 200 4326 http-bio-8080-exec-7 2
+0:0:0:0:0:0:0:1 - - [11/Nov/2025:22:27:26 +0700] "GET /QLST_WebApp/reports/suppliers HTTP/1.1" 200 3247 http-bio-8080-exec-8 226
+0:0:0:0:0:0:0:1 - - [11/Nov/2025:22:27:33 +0700] "GET /QLST_WebApp/reports/suppliers?from=2025-01-01&to=2025-11-11&mode=revenue HTTP/1.1" 200 7560 http-bio-8080-exec-9 104
+0:0:0:0:0:0:0:1 - - [11/Nov/2025:22:27:35 +0700] "GET /QLST_WebApp/receipts?supplierId=2&from=2025-01-01&to=2025-11-11&page=1&size=6 HTTP/1.1" 200 5038 http-bio-8080-exec-10 201
+0:0:0:0:0:0:0:1 - - [11/Nov/2025:22:27:38 +0700] "GET /QLST_WebApp/receipts/detail?grId=1&supplierId=2&from=2025-01-01&to=2025-11-11&supplierName=Apple+Vi%e1%bb%87t+Nam&supplierCode=NCC002&supplierTaxCode=0312345679&supplierAddress=T%e1%ba%a7ng+15%2c+Bitexco%2c+Q1%2c+HCM&receiptDate=20%2f01%2f2025&listPage=1&listSize=6&linePage=1&lineSize=6 HTTP/1.1" 200 4797 http-bio-8080-exec-10 148

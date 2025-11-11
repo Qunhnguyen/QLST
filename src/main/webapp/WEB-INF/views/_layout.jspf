@@ -1,0 +1,26 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>${pageTitle}</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar__brand">QLST Manager</div>
+        <ul class="sidebar__nav">
+            <li><a href="${pageContext.request.contextPath}/main" class="${pageScope.pageTitle == 'Trang chính' ? 'active' : ''}">Trang chính</a></li>
+            <li><a href="${pageContext.request.contextPath}/reports/menu" class="${pageScope.pageTitle.contains('Báo cáo') ? 'active' : ''}">Báo cáo</a></li>
+            <li><a href="#">Sản phẩm</a></li>
+            <li><a href="#">Đơn hàng</a></li>
+        </ul>
+    </nav>
+    <main class="main">
+        <section class="card">
+            <jsp:doBody/>
+        </section>
+    </main>
+</body>
+</html>
