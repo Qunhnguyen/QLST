@@ -5,6 +5,7 @@
 <%@ taglib prefix="ui" tagdir="/WEB-INF/tags" %>
 
 <c:set var="keyword" value="${empty keyword ? '' : keyword}" />
+<c:set var="totalProducts" value="${empty totalProducts ? 0 : totalProducts}" />
 
 <ui:layout title="Tìm kiếm sản phẩm" activeMenu="customer-products">
     <div class="section-title">
@@ -28,7 +29,7 @@
     </c:if>
 
     <c:choose>
-        <c:when test="${empty products}">
+        <c:when test="${totalProducts == 0}">
             <div class="empty-state">
                 <h3>Không tìm thấy sản phẩm phù hợp</h3>
                 <p>Hãy thử nhập từ khóa khác hoặc kiểm tra lại chính tả.</p>
@@ -36,9 +37,12 @@
         </c:when>
         <c:otherwise>
             <div class="product-summary-row">
-                <span><strong>${fn:length(products)}</strong> sản phẩm được tìm thấy</span>
+                <span><strong>${totalProducts}</strong> sản phẩm được tìm thấy</span>
                 <c:if test="${not empty keyword}">
                     <span class="badge badge-muted">Từ khóa: "${keyword}"</span>
+                </c:if>
+                <c:if test="${totalProducts > 0}">
+                    <span class="badge badge-muted">Trang ${productsPage.pageNumber}/${productsPage.totalPages} · ${productsPage.startItem}-${productsPage.endItem}</span>
                 </c:if>
             </div>
             <div class="product-grid">
@@ -68,6 +72,32 @@
                     </a>
                 </c:forEach>
             </div>
+            <c:if test="${totalProducts > 0}">
+                <div class="pagination">
+                    <div class="pagination__summary">
+                        Trang ${productsPage.pageNumber}/${productsPage.totalPages} · Hiển thị ${productsPage.startItem}-${productsPage.endItem} / ${productsPage.totalItems}
+                    </div>
+                    <div class="pagination__controls">
+                        <c:if test="${productsPage.hasPrevious}">
+                            <c:url var="prevUrl" value="/customer/products">
+                                <c:if test="${not empty keyword}"><c:param name="q" value="${keyword}" /></c:if>
+                                <c:param name="page" value="${productsPage.pageNumber - 1}" />
+                                <c:param name="size" value="${productsPage.pageSize}" />
+                            </c:url>
+                            <a class="pagination__link" href="${prevUrl}">← Trước</a>
+                        </c:if>
+                        <span class="pagination__status">${productsPage.startItem}-${productsPage.endItem}</span>
+                        <c:if test="${productsPage.hasNext}">
+                            <c:url var="nextUrl" value="/customer/products">
+                                <c:if test="${not empty keyword}"><c:param name="q" value="${keyword}" /></c:if>
+                                <c:param name="page" value="${productsPage.pageNumber + 1}" />
+                                <c:param name="size" value="${productsPage.pageSize}" />
+                            </c:url>
+                            <a class="pagination__link" href="${nextUrl}">Sau →</a>
+                        </c:if>
+                    </div>
+                </div>
+            </c:if>
         </c:otherwise>
     </c:choose>
 </ui:layout>

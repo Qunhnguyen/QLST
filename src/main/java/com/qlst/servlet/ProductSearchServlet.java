@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.qlst.dao.ProductDAO;
 import com.qlst.model.Product;
+import com.qlst.util.Page;
+import com.qlst.util.PaginationUtil;
 
 @WebServlet(urlPatterns = {"/customer/products", "/customer/product"})
 public class ProductSearchServlet extends HttpServlet {
@@ -41,8 +43,13 @@ public class ProductSearchServlet extends HttpServlet {
             throws ServletException, IOException, SQLException {
         String keyword = req.getParameter("q");
         List<Product> products = productDAO.searchProducts(keyword);
+        int pageNumber = PaginationUtil.parsePage(req.getParameter("page"));
+        int pageSize = PaginationUtil.parsePageSize(req.getParameter("size"), PaginationUtil.DEFAULT_PAGE_SIZE);
+        Page<Product> productsPage = PaginationUtil.paginate(products, pageNumber, pageSize);
         req.setAttribute("keyword", keyword);
-        req.setAttribute("products", products);
+        req.setAttribute("products", productsPage.getContent());
+        req.setAttribute("productsPage", productsPage);
+        req.setAttribute("totalProducts", productsPage.getTotalItems());
         req.getRequestDispatcher("/WEB-INF/views/customer/ProductSearch.jsp")
            .forward(req, resp);
     }
